@@ -33,6 +33,8 @@ function initProfileData() {
   }
 
   // Social & Contact Links
+  setHref('hero-resume-link', profileConfig.contact.resumeUrl);
+  setHref('nav-resume-link', profileConfig.contact.resumeUrl);
   setHref('hero-github-link', profileConfig.contact.github);
   setHref('hero-linkedin-link', profileConfig.contact.linkedin);
   setHref('contact-email-link', `mailto:${profileConfig.contact.email}`);

@@ -26,6 +26,7 @@
           <li><a href="#skills">Skills</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#contact">Contact</a></li>
+          <li><a id="nav-resume-link" href="./assets/Resume_Loh_Boon_Cheong_Timothy.pdf" target="_blank" rel="noopener noreferrer">Resume ↗</a></li>
         </ul>
       </nav>
     </div>
@@ -34,17 +35,33 @@
   <main class="container">
     <!-- Intro / Hero Section -->
     <section id="intro" class="hero">
-      <h1 class="hero-name" id="hero-name">Timothy Loh</h1>
-      <p class="hero-role" id="hero-role">Final-Year Computer Science Undergraduate</p>
+      <div class="hero-header-row">
+        <div class="hero-text-col">
+          <h1 class="hero-name" id="hero-name">Timothy Loh</h1>
+          <p class="hero-role" id="hero-role">Final-Year Computer Science Undergraduate</p>
+        </div>
+        <div class="hero-photo-wrapper">
+          <div class="hero-photo-container" id="hero-photo-box">
+            <img id="hero-photo-img" src="./assets/profile.jpg" alt="Timothy Loh" class="hero-photo-img" onerror="this.parentElement.classList.add('placeholder-active');">
+            <div class="hero-photo-placeholder" id="hero-photo-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <span>Add Photo</span>
+            </div>
+          </div>
+        </div>
+      </div>
       
       <p class="hero-bio" id="hero-tagline">
         I’m passionate about low-level computer systems and understanding what happens beneath the abstractions we normally take for granted. I enjoy working close to the hardware, exploring computer architecture, systems programming.
       </p>
 
       <div class="hero-links">
-        <!-- <a id="hero-github-link" href="https://github.com/Timothy-Loh-bc" target="_blank" rel="noopener noreferrer" class="link-pill"> -->
-          <!-- GitHub ↗ -->
-        <!-- </a> -->
+        <a id="hero-resume-link" href="./assets/Resume_Loh_Boon_Cheong_Timothy.pdf" target="_blank" rel="noopener noreferrer" class="link-pill">
+          Resume ↗
+        </a>
+        <a id="hero-github-link" href="https://github.com/Timothy-Loh-bc" target="_blank" rel="noopener noreferrer" class="link-pill">
+          GitHub ↗
+        </a>
         <a id="hero-linkedin-link" href="https://www.linkedin.com/in/timothyloh2001/" target="_blank" rel="noopener noreferrer" class="link-pill">
           LinkedIn ↗
         </a>

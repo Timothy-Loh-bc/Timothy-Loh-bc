@@ -29,8 +29,12 @@ function renderProjectDetail() {
   const authorName = (typeof profileConfig !== 'undefined' && profileConfig.name) ? profileConfig.name : 'Timothy Loh';
   document.title = `${project.title} — ${authorName}`;
 
-  // Sync Brand and Footer
+  // Sync Brand, Navigation and Footer
   document.querySelectorAll('.brand-name').forEach(el => el.textContent = authorName);
+  const navResume = document.getElementById('nav-resume-link');
+  if (navResume && typeof profileConfig !== 'undefined' && profileConfig.contact?.resumeUrl) {
+    navResume.href = profileConfig.contact.resumeUrl;
+  }
   const footerAuthor = document.getElementById('footer-author-name');
   if (footerAuthor) footerAuthor.textContent = authorName;
   const footerYear = document.getElementById('copyright-year');

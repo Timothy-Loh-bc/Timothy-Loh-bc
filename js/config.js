@@ -7,6 +7,7 @@ const profileConfig = {
   roleTitle: "SIT DigiPen Real-Time Interactive Simulation Undergraduate",
   tagline: "Final-year Computer Science undergraduate passionate about low-level computer systems and understanding what happens beneath the abstractions most of us take for granted. I enjoy working close to the hardware, exploring computer architecture and systems programming.",
   status: "🎓 Final-Year Undergraduate • Actively Seeking Internships",
+  avatarUrl: "./assets/profile.jpg", // Place your photo in assets/profile.jpg (or png)
   
   // Education & Academics
   education: {
@@ -34,7 +35,7 @@ const profileConfig = {
     email: "lohbctimothy@gmail.com", 
     github: "https://github.com/Timothy-Loh-bc",
     linkedin: "https://www.linkedin.com/in/timothyloh2001/",
-    resumeUrl: "#assets/Resume_Loh_Boon_Cheong_Timothy.pdf",
+    resumeUrl: "./assets/Resume_Loh_Boon_Cheong_Timothy.pdf",
     location: "Available for on-site & semi-remote internships"
   },
 
