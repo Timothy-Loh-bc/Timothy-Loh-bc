@@ -25,6 +25,21 @@ function initProfileData() {
   setText('hero-role', profileConfig.roleTitle);
   setText('hero-tagline', profileConfig.tagline);
 
+  // Profile Photo
+  const photoImg = document.getElementById('hero-photo-img');
+  const photoBox = document.getElementById('hero-photo-box');
+  if (photoImg && profileConfig.avatarUrl) {
+    photoImg.src = profileConfig.avatarUrl;
+    photoImg.onload = () => {
+      if (photoBox) photoBox.classList.remove('placeholder-active');
+    };
+    photoImg.onerror = () => {
+      if (photoBox) photoBox.classList.add('placeholder-active');
+    };
+  } else if (photoBox) {
+    photoBox.classList.add('placeholder-active');
+  }
+
   if (profileConfig.education) {
     setText('edu-degree', profileConfig.education.degree);
     setText('edu-institution', profileConfig.education.institution);

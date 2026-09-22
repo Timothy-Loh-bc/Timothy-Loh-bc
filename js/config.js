@@ -6,8 +6,8 @@ const profileConfig = {
   name: "Timothy Loh",
   roleTitle: "SIT DigiPen Real-Time Interactive Simulation Undergraduate",
   tagline: "Final-year Computer Science undergraduate passionate about low-level computer systems and understanding what happens beneath the abstractions most of us take for granted. I enjoy working close to the hardware, exploring computer architecture and systems programming.",
-  status: "🎓 Final-Year Undergraduate • Actively Seeking Internships",
-  avatarUrl: "./assets/profile.jpg", // Place your photo in assets/profile.jpg (or png)
+  status: "Final-Year Undergraduate • Actively Seeking Internships",
+  avatarUrl: "./assets/profile.jpeg",
   
   // Education & Academics
   education: {
