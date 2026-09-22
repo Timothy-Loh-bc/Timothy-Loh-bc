@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Timothy Loh - Computer Science Undergraduate seeking Software Engineering Internships.">
+  <title>Timothy Loh | Portfolio</title>
+
+  <!-- Google Fonts: Clean Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Minimalist Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="header">
+    <div class="container nav-row">
+      <a href="#intro" class="brand-name">Timothy Loh</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Intro / Hero Section -->
+    <section id="intro" class="hero">
+      <h1 class="hero-name" id="hero-name">Timothy Loh</h1>
+      <p class="hero-role" id="hero-role">Final-Year Computer Science Undergraduate</p>
+      
+      <p class="hero-bio" id="hero-tagline">
+        I’m passionate about low-level computer systems and understanding what happens beneath the abstractions we normally take for granted. I enjoy working close to the hardware, exploring computer architecture, systems programming.
+      </p>
+
+      <div class="hero-links">
+        <!-- <a id="hero-github-link" href="https://github.com/Timothy-Loh-bc" target="_blank" rel="noopener noreferrer" class="link-pill"> -->
+          <!-- GitHub ↗ -->
+        <!-- </a> -->
+        <a id="hero-linkedin-link" href="https://www.linkedin.com/in/timothyloh2001/" target="_blank" rel="noopener noreferrer" class="link-pill">
+          LinkedIn ↗
+        </a>
+        <a href="#contact" class="link-pill">
+          Contact / Email ↓
+        </a>
+      </div>
+    </section>
+
+    <!-- About & Education Section -->
+    <section id="about">
+      <h2 class="section-title">Education & Background</h2>
+      
+      <div class="education-item">
+        <div>
+          <span class="degree-title" id="edu-degree">Computer Science in Real-Time Interactive Simulation</span> &middot; 
+          <span class="degree-institution" id="edu-institution">Undergraduate Program</span>
+        </div>
+        <span class="degree-year" id="edu-period">Expected 2026</span>
+      </div>
+      
+      <p class="degree-coursework" id="edu-focus">
+        Core Focus: Distributed Systems, Web Architecture, Algorithms & Data Structures, Database Systems
+      </p>
+
+      <div id="bio-container" style="margin-top: 1rem;">
+        <!-- Populated dynamically from config.js -->
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+      <h2 class="section-title">Technical Skills</h2>
+      <div class="skills-grid" id="skills-container">
+        <!-- Populated dynamically from config.js -->
+      </div>
+    </section>
+
+    <!-- Modular Projects Showcase -->
+    <section id="projects">
+      <div class="projects-header-wrapper">
+        <div class="section-title">
+          <span>Projects</span>
+          <span style="font-size: 0.85rem; font-weight: normal; color: var(--text-muted);" id="projects-count-label"></span>
+        </div>
+        
+        <!-- Role filter tabs -->
+        <div class="filter-tabs" id="filter-pills-container">
+          <!-- Populated dynamically -->
+        </div>
+
+        <div class="role-notice-bar" id="active-role-notice">
+          <span id="role-notice-text">Showing role-specific projects</span>
+          <button id="clear-role-btn" style="margin-left: 0.5rem; background: none; border: none; color: var(--accent-link); cursor: pointer; text-decoration: underline; font-size: 0.85rem;">Show all</button>
+        </div>
+      </div>
+
+      <!-- Project List -->
+      <div class="project-list" id="projects-grid">
+        <!-- Populated dynamically by main.js -->
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      
+      <div class="contact-section-inner">
+        <p class="contact-text">
+          I am actively interviewing for upcoming software engineering internships. If you have an open position or would like to discuss my projects, please reach out directly:
+        </p>
+
+        <div class="contact-row">
+          <span class="direct-email" id="contact-email-display">timothyloh.dev@gmail.com</span>
+          <a id="contact-email-link" href="mailto:timothyloh.dev@gmail.com" class="btn-simple btn-primary-simple">
+            Send Email
+          </a>
+          <button id="copy-email-btn" class="btn-simple">
+            Copy Address
+          </button>
+        </div>
+
+        <!-- Minimal quick email composer -->
+        <form id="quick-contact-form" class="quick-form">
+          <div class="form-group-simple">
+            <input type="text" id="sender-name" class="input-simple" placeholder="Your Name / Organization" required>
+          </div>
+          <div class="form-group-simple">
+            <input type="text" id="sender-role-type" class="input-simple" placeholder="Role / Opportunity (e.g. Software Engineering Intern)" required>
+          </div>
+          <div class="form-group-simple">
+            <textarea id="sender-message" class="textarea-simple" placeholder="Your message..." required></textarea>
+          </div>
+          <button type="submit" class="btn-simple">
+            Draft Email in Client &rarr;
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Minimal Footer -->
+    <footer class="footer">
+      <div>&copy; <span id="copyright-year">2026</span> <span id="footer-author-name">Timothy Loh</span></div>
+      <div>Hosted on GitHub Pages</div>
+    </footer>
+  </main>
+
+  <div id="toast" class="toast">Copied to clipboard</div>
+
+  <!-- Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/projects-data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
