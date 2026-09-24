@@ -77,112 +77,24 @@ function initProfileData() {
   setText('copyright-year', new Date().getFullYear().toString());
 }
 
-let currentRoleFilter = 'all';
-
 function initProjectsSection() {
   if (typeof ProjectsManager === 'undefined') return;
-
-  // Check URL query parameters for ?role=... (e.g. ?role=backend)
-  const urlParams = new URLSearchParams(window.location.search);
-  const requestedRole = urlParams.get('role');
-
-  const availableRoles = profileConfig.roleFilters || [
-    { id: "all", label: "All" },
-    { id: "software-engineering", label: "Software Engineering" },
-    { id: "backend", label: "Backend" },
-    { id: "fullstack", label: "Full Stack" },
-    { id: "data-ai", label: "Data / ML" }
-  ];
-
-  if (requestedRole && availableRoles.some(r => r.id === requestedRole.toLowerCase())) {
-    currentRoleFilter = requestedRole.toLowerCase();
-  }
-
-  renderFilterTabs(availableRoles);
-  renderProjectList(currentRoleFilter);
-  updateRoleNotice(currentRoleFilter);
+  renderProjectList();
 }
 
-function renderFilterTabs(roles) {
-  const container = document.getElementById('filter-pills-container');
-  if (!container) return;
-
-  container.innerHTML = roles.map(role => {
-    const count = ProjectsManager.getProjectsByRole(role.id).length;
-    const isActive = role.id === currentRoleFilter ? 'active' : '';
-
-    return `
-      <button class="filter-btn ${isActive}" data-role="${role.id}">
-        <span>${role.label}</span>
-        <span class="filter-count">(${count})</span>
-      </button>
-    `;
-  }).join('');
-
-  container.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      setRoleFilter(btn.dataset.role);
-    });
-  });
-}
-
-function setRoleFilter(roleId) {
-  currentRoleFilter = roleId;
-
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.role === roleId);
-  });
-
-  const url = new URL(window.location);
-  if (roleId === 'all') {
-    url.searchParams.delete('role');
-  } else {
-    url.searchParams.set('role', roleId);
-  }
-  window.history.replaceState({}, '', url);
-
-  renderProjectList(roleId);
-  updateRoleNotice(roleId);
-}
-
-function updateRoleNotice(roleId) {
-  const noticeBox = document.getElementById('active-role-notice');
-  const noticeText = document.getElementById('role-notice-text');
-  const clearBtn = document.getElementById('clear-role-btn');
-
-  if (!noticeBox) return;
-
-  if (roleId !== 'all') {
-    noticeBox.style.display = 'block';
-    const roleObj = (profileConfig.roleFilters || []).find(r => r.id === roleId);
-    const roleName = roleObj ? roleObj.label : roleId;
-    if (noticeText) noticeText.textContent = `Filtered by role: ${roleName}`;
-
-    if (clearBtn) {
-      clearBtn.onclick = () => setRoleFilter('all');
-    }
-  } else {
-    noticeBox.style.display = 'none';
-  }
-}
-
-function renderProjectList(roleId) {
+function renderProjectList() {
   const list = document.getElementById('projects-grid');
   if (!list) return;
 
-  const projects = ProjectsManager.getProjectsByRole(roleId);
+  const projects = ProjectsManager.getActiveProjects();
 
   if (projects.length === 0) {
-    list.innerHTML = `
-      <div style="padding: 2rem 0; color: var(--text-muted); font-size: 0.95rem;">
-        No projects currently matching this filter. <a href="#" onclick="setRoleFilter('all'); return false;">View all projects</a>
-      </div>
-    `;
+    list.innerHTML = `<div style="padding: 2rem 0; color: var(--text-muted); font-size: 0.95rem;">No projects to display.</div>`;
     return;
   }
 
   list.innerHTML = projects.map(project => {
-    const metricsStr = (project.metrics || []).map(m => 
+    const metricsStr = (project.metrics || []).map(m =>
       `<span class="metric-simple-item">${m.label}: <strong>${m.value}</strong></span>`
     ).join(' &middot; ');
 
@@ -203,18 +115,8 @@ function renderProjectList(roleId) {
 
         <div class="project-actions-row">
           <a href="project.html?id=${project.id}" class="action-case-study">
-            Case Study &rarr;
+            Read More &rarr;
           </a>
-          ${project.links?.github ? `
-            <a href="${project.links.github}" target="_blank" rel="noopener noreferrer" class="action-secondary">
-              GitHub ↗
-            </a>
-          ` : ''}
-          ${project.links?.demo ? `
-            <a href="${project.links.demo}" target="_blank" rel="noopener noreferrer" class="action-secondary">
-              Live Demo ↗
-            </a>
-          ` : ''}
         </div>
       </article>
     `;

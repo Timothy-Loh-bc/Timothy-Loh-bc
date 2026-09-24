@@ -7,6 +7,16 @@ document.addEventListener('DOMContentLoaded', () => {
   renderProjectDetail();
 });
 
+function renderParagraphs(text) {
+  if (!text) return '';
+  const paragraphs = Array.isArray(text) ? text : text.split(/\n\s*\n/);
+  return paragraphs
+    .map(p => p.trim())
+    .filter(p => p.length > 0)
+    .map(p => `<p class="case-body-text">${p}</p>`)
+    .join('');
+}
+
 function renderProjectDetail() {
   const container = document.getElementById('project-container');
   if (!container) return;
@@ -63,6 +73,30 @@ function renderProjectDetail() {
     </li>
   `).join('');
 
+  // Screenshots (carousel)
+  const screenshots = caseStudy.screenshots || [];
+  const screenshotsHtml = screenshots.length ? `
+    <div class="case-carousel${screenshots.length === 1 ? ' single-screenshot' : ''}" data-index="0">
+      <div class="case-carousel-viewport">
+        ${screenshots.length > 1 ? '<button class="case-carousel-arrow case-carousel-prev" aria-label="Previous screenshot">&larr;</button>' : ''}
+        <div class="case-carousel-track">
+          ${screenshots.map((shot, i) => `
+            <div class="case-carousel-slide" data-slide="${i}">
+              <img src="${shot.src}" alt="${shot.caption || project.title}" loading="lazy">
+            </div>
+          `).join('')}
+        </div>
+        ${screenshots.length > 1 ? '<button class="case-carousel-arrow case-carousel-next" aria-label="Next screenshot">&rarr;</button>' : ''}
+      </div>
+      ${screenshots[0]?.caption ? `<div class="case-carousel-caption">${screenshots[0].caption}</div>` : ''}
+      ${screenshots.length > 1 ? `
+        <div class="case-carousel-dots">
+          ${screenshots.map((_, i) => `<span class="case-carousel-dot${i === 0 ? ' active' : ''}" data-dot="${i}"></span>`).join('')}
+        </div>
+      ` : ''}
+    </div>
+  ` : '';
+
   // Key Features
   const featuresHtml = (caseStudy.keyFeatures || []).map(feat => `
     <li class="case-list-item">
@@ -97,86 +131,41 @@ function renderProjectDetail() {
     <header class="case-header">
       <h1 class="case-title">${project.title}</h1>
       <p class="case-tagline">${project.tagline}</p>
-
-      <div class="case-meta">
-        <div class="case-roles">
-          Role tags: ${project.roles.join(', ')} &middot; ${project.period || ''}
-        </div>
-        <div class="case-links">
-          ${project.links?.github ? `
-            <a href="${project.links.github}" target="_blank" rel="noopener noreferrer">
-              GitHub Repo ↗
-            </a>
-          ` : ''}
-          ${project.links?.demo ? `
-            <a href="${project.links.demo}" target="_blank" rel="noopener noreferrer">
-              Live Demo ↗
-            </a>
-          ` : ''}
-        </div>
-      </div>
     </header>
 
     ${metricsHtml ? `<div class="case-metrics-simple">${metricsHtml}</div>` : ''}
 
     <article>
       <!-- Overview -->
-      <section class="case-section">
-        <h2 class="case-section-title">Overview</h2>
-        <p class="case-body-text">${caseStudy.overview || project.summary}</p>
-      </section>
+		<section class="case-section">
+		  <h2 class="case-section-title">Overview</h2>
+		  ${renderParagraphs(caseStudy.overview || project.summary)}
+		</section>
 
-      <!-- Problem -->
-      ${caseStudy.problem ? `
-        <section class="case-section">
-          <h2 class="case-section-title">Problem & Motivation</h2>
-          <p class="case-body-text">${caseStudy.problem}</p>
-        </section>
-      ` : ''}
+      <!-- Screenshots -->
+		${screenshotsHtml ? `
+		  <section class="case-section">
+			<h2 class="case-section-title">Screenshots</h2>
+			${screenshotsHtml}
+		  </section>
+		` : ''}
 
       <!-- Architecture -->
-      ${archItemsHtml ? `
-        <section class="case-section">
-          <h2 class="case-section-title">System Architecture</h2>
-          <ul class="case-list">
-            ${archItemsHtml}
-          </ul>
-        </section>
-      ` : ''}
-
-      <!-- Key Features -->
-      ${featuresHtml ? `
-        <section class="case-section">
-          <h2 class="case-section-title">Key Capabilities</h2>
-          <ul class="case-list">
-            ${featuresHtml}
-          </ul>
-        </section>
-      ` : ''}
-
-      <!-- Engineering Challenges -->
-      ${challengesHtml ? `
-        <section class="case-section">
-          <h2 class="case-section-title">Engineering Challenges Solved</h2>
-          ${challengesHtml}
-        </section>
-      ` : ''}
-
-      <!-- Technologies -->
-      ${techStackHtml ? `
-        <section class="case-section">
-          <h2 class="case-section-title">Technology Stack</h2>
-          ${techStackHtml}
-        </section>
-      ` : ''}
-
-      <!-- Learnings -->
-      ${caseStudy.learnings ? `
-        <section class="case-section">
-          <h2 class="case-section-title">Key Learnings & Takeaways</h2>
-          <p class="case-body-text">${caseStudy.learnings}</p>
-        </section>
-      ` : ''}
+		${caseStudy.architecture ? `
+		  <section class="case-section">
+			<h2 class="case-section-title">Architecture</h2>
+			${renderParagraphs(caseStudy.architecture)}
+		  </section>
+		` : ''}
+	  
+      <!-- Key Capabilities -->
+		${caseStudy.keyCapabilities ? `
+		  <section class="case-section">
+			<h2 class="case-section-title">Key Capabilities</h2>
+			${renderParagraphs(caseStudy.keyCapabilities)}
+		  </section>
+		` : ''}
+	  
     </article>
 
     <div class="case-pagination">
@@ -193,6 +182,49 @@ function renderProjectDetail() {
       ` : '<div></div>'}
     </div>
   `;
+
+  initCarousel(container, screenshots);
+}
+
+function initCarousel(container, screenshots) {
+  const carousel = container.querySelector('.case-carousel');
+  if (!carousel || !screenshots.length) return;
+
+  const track = carousel.querySelector('.case-carousel-track');
+  const caption = carousel.querySelector('.case-carousel-caption');
+  const dots = carousel.querySelectorAll('.case-carousel-dot');
+  const prevBtn = carousel.querySelector('.case-carousel-prev');
+  const nextBtn = carousel.querySelector('.case-carousel-next');
+  let index = 0;
+
+  function update() {
+    track.style.transform = `translateX(-${index * 100}%)`;
+    caption.textContent = screenshots[index]?.caption || '';
+    dots.forEach((d, i) => d.classList.toggle('active', i === index));
+  }
+
+  if (screenshots.length <= 1) {
+    prevBtn.style.display = 'none';
+    nextBtn.style.display = 'none';
+    return;
+  }
+
+  prevBtn.addEventListener('click', () => {
+    index = (index - 1 + screenshots.length) % screenshots.length;
+    update();
+  });
+
+  nextBtn.addEventListener('click', () => {
+    index = (index + 1) % screenshots.length;
+    update();
+  });
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      index = parseInt(dot.dataset.dot, 10);
+      update();
+    });
+  });
 }
 
 function renderNotFound(container) {

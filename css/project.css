@@ -106,10 +106,112 @@
   border-bottom: 1px solid var(--border-color);
 }
 
+.case-carousel {
+  max-width: 600px;
+}
+
+.case-carousel-viewport {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.case-carousel-track {
+  display: flex;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  transition: transform 0.3s ease;
+  flex: 1;
+  min-width: 0;
+}
+
+.case-carousel-slide {
+  flex: 0 0 100%;
+}
+
+.case-carousel-slide img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+}
+
+.case-carousel-arrow {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.case-carousel-arrow:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--text-muted);
+}
+
+.case-carousel-caption {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.5;
+  min-height: 1.3em;
+}
+
+.case-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+}
+
+.case-carousel-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--border-color);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.case-carousel-dot.active {
+  background: var(--accent-color);
+}
+
+/* Single image: no arrows/dots, image fills the card cleanly */
+.case-carousel.single-screenshot {
+  max-width: 100%;
+}
+
+.case-carousel.single-screenshot .case-carousel-viewport {
+  gap: 0;
+}
+
+.case-carousel.single-screenshot .case-carousel-slide img {
+  height: auto;
+  max-height: 480px;
+}
+
 .case-body-text {
   font-size: 0.95rem;
   color: var(--text-secondary);
   line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+
+.case-body-text:last-child {
+  margin-bottom: 0;
 }
 
 .case-list {
