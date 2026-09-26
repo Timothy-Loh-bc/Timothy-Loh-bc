@@ -1,106 +1,21 @@
-# [Your Name] — Portfolio
+# Loh Boon Cheong, Timothy
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-View_Site-6366f1?style=for-the-badge&logo=googlechrome&logoColor=white)](https://timothy-loh-bc.github.io/Timothy-Loh-bc/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/timothyloh2001/)
 [![Email](https://img.shields.io/badge/Email-Contact_Me-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:lohbctimothy@gmail.com)
 
-> [A short introduction describing who you are, what you build, and the opportunities you are seeking.]
+3rd Year BSc Undergraduate in Real-Time Interactive Simulation at DigiPen Singapore, Singapore Institute of Technology. My interests lie in low-level software, specifically understanding the "magic" behind what the users see and take for granted. Looking for a one year internship from May 2027 to May 2028.
 
 ## About Me
 
-[Write two or three sentences about your background, interests, and current goals. Keep this section concise and specific.]
+I began my studies in Accountancy before transitioning to Computer Science after discovering, through personal projects and independent learning, that I genuinely enjoy programming and problem-solving.
 
-- **Current role or course:** [Your role, degree, or programme]
-- **Based in:** [City, Country]
-- **Interested in:** [Backend engineering, game development, data, etc.]
-- **Currently learning:** [Technology or subject]
-- **Open to:** [Internships, graduate roles, freelance work, etc.]
+My interests lie in low-level programming and performance optimization, particularly in understanding how software interacts with hardware. My goal is to work on hardware-specific systems where I can explore said complexities and build solutions that are faster and more efficient.
 
-## Featured Projects
+I also enjoy planning out software architecture. When everything works together, it reminds me of a symphony. It just pieces together nicely. Experience has also taught me that clean architecture is often an ideal to work towards rather than something that can be achieved perfectly, especially when balancing real-world constraints and trade-offs.
 
-### [Project One]
 
-[One-sentence explanation of the problem and what you built.]
-
-- **Highlights:** [Key result, feature, or measurable impact]
-- **Built with:** [Technology], [Technology], [Technology]
-- **Links:** [Case study](PROJECT_CASE_STUDY_URL) · [Source code](PROJECT_REPOSITORY_URL) · [Live demo](PROJECT_DEMO_URL)
-
-### [Project Two]
-
-[One-sentence explanation of the problem and what you built.]
-
-- **Highlights:** [Key result, feature, or measurable impact]
-- **Built with:** [Technology], [Technology], [Technology]
-- **Links:** [Case study](PROJECT_CASE_STUDY_URL) · [Source code](PROJECT_REPOSITORY_URL) · [Live demo](PROJECT_DEMO_URL)
-
-<!-- Copy a project section above to add more featured projects. -->
-
-## Skills
-
-- **Languages:** [Language], [Language], [Language]
-- **Frameworks and libraries:** [Framework], [Framework], [Library]
-- **Databases:** [Database], [Database]
-- **Tools and platforms:** [Tool], [Cloud platform], [Operating system]
-- **Practices:** [Testing], [System design], [CI/CD]
-
-## Portfolio Website
-
-This repository contains a static portfolio website built with HTML, CSS, and JavaScript.
-
-### Update your personal information
-
-Edit [`js/config.js`](js/config.js) to change your name, biography, contact details, resume link, education, and role filters.
-
-### Add or edit projects
-
-Project content is stored in [`js/projects-data.js`](js/projects-data.js). Copy an existing project object and replace its values:
-
-```javascript
-{
-  id: "unique-project-id",
-  title: "Project Name",
-  tagline: "A concise description of the project.",
-  active: true,
-  featured: true,
-  roles: ["software-engineering"],
-  period: "Month Year – Month Year",
-  tags: ["Technology", "Technology"],
-  metrics: [
-    { label: "Role", value: "Your Role" }
-  ],
-  caseStudy: {
-    screenshots: [
-      {
-        src: "assets/project-name/screenshot.png",
-        caption: "Describe what this screenshot shows."
-      }
-    ],
-    overview: "Explain the project, its purpose, and your contribution."
-  }
-}
-```
-
-Set `active` to `false` to hide a project without deleting it. Store its images under `assets/` and make sure filename capitalization exactly matches the paths in the project data.
-
-### Run locally
-
-Open `index.html` directly, or serve the repository with any local static-file server.
-
-### Publish with GitHub Pages
-
-1. Open the repository's **Settings** on GitHub.
-2. Select **Pages**.
-3. Choose **Deploy from a branch**.
-4. Select the `main` branch and `/(root)` folder, then save.
-5. Replace `YOUR_PORTFOLIO_URL` at the top of this file with the published URL.
-
-## Contact
-
-- **Email:** [EMAIL_ADDRESS]
-- **LinkedIn:** [LINKEDIN_URL]
-- **Portfolio:** [PORTFOLIO_URL]
-
----
-
-Replace every value in square brackets before publishing this README.
+- **Current role or course:** BSc Undergraduate in Real-Time Interactive Simulation | DigiPen Singapore | Singapore Institute of Technology
+- **Based in:** Singapore
+- **Interested in:** Low-level programming, Graphics programming, Software Architecture
+- **Open to:** Internship from May 2027 to May 2028
