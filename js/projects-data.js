@@ -1,3 +1,13 @@
+// Display order for the homepage and project navigation.
+// Rearrange these IDs without moving the project definitions below.
+// Active projects omitted from this list appear at the end.
+const projectOrder = [
+  "Hellmaker 2D Engine/Editor",
+  "strokenet",
+  "csd2151-graphics-demos",
+  "polygon-simplification"
+];
+
 const projectsData = [
   {
     id: "Hellmaker 2D Engine/Editor",
@@ -234,7 +244,10 @@ const projectsData = [
 const ProjectsManager = {
   // Returns all active projects
   getActiveProjects() {
-    return projectsData.filter(project => project.active);
+    const positions = new Map(projectOrder.map((id, index) => [id, index]));
+    return projectsData.filter(project => project.active).sort((a, b) =>
+      (positions.get(a.id) ?? Infinity) - (positions.get(b.id) ?? Infinity)
+    );
   },
 
   // Returns projects filtered by role ID
@@ -255,8 +268,9 @@ const ProjectsManager = {
 
 // Export for module or global window usage
 if (typeof module !== "undefined" && module.exports) {
-  module.exports = { projectsData, ProjectsManager };
+  module.exports = { projectOrder, projectsData, ProjectsManager };
 } else {
   window.projectsData = projectsData;
+  window.projectOrder = projectOrder;
   window.ProjectsManager = ProjectsManager;
 }
