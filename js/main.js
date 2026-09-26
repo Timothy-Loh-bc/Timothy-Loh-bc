@@ -143,11 +143,11 @@ function initContactSection() {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const senderName = document.getElementById('sender-name').value.trim();
-      const roleType = document.getElementById('sender-role-type').value.trim();
+      const reason = document.getElementById('sender-reason').value.trim();
       const message = document.getElementById('sender-message').value.trim();
 
       const recipient = profileConfig?.contact?.email || 'timothyloh.dev@gmail.com';
-      const subject = encodeURIComponent(`[Internship Inquiry] ${roleType} - ${senderName}`);
+      const subject = encodeURIComponent(`Portfolio Message from ${senderName}: ${reason}`);
       const body = encodeURIComponent(
         `Hi Timothy,\n\n${message}\n\nBest regards,\n${senderName}`
       );

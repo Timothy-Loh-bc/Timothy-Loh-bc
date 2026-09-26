@@ -20,7 +20,6 @@
   --accent-link-hover: #1d4ed8;
 
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
 
   --max-width: 780px;
   --radius-sm: 4px;
@@ -294,7 +293,7 @@ section {
 }
 
 .degree-year {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.85rem;
   color: var(--text-muted);
 }
@@ -424,7 +423,7 @@ section {
 }
 
 .project-date {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.825rem;
   color: var(--text-muted);
 }
@@ -533,7 +532,7 @@ section {
 }
 
 .direct-email {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.95rem;
   font-weight: 500;
   color: var(--text-primary);

@@ -81,7 +81,7 @@
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--text-primary);
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
 }
 
 .metric-box-lbl {
@@ -304,7 +304,7 @@
 
 .case-bullet {
   color: var(--text-muted);
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   flex-shrink: 0;
 }
 
@@ -344,7 +344,7 @@
 }
 
 .tech-breakdown-items {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.85rem;
   color: var(--text-secondary);
 }
