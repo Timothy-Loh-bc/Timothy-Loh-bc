@@ -453,13 +453,6 @@ section {
   font-weight: 600;
 }
 
-.project-tags-simple {
-  font-family: var(--font-mono);
-  font-size: 0.825rem;
-  color: var(--text-muted);
-  margin-bottom: 0.75rem;
-}
-
 .project-actions-row {
   display: flex;
   align-items: center;

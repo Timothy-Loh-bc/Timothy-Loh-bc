@@ -98,8 +98,6 @@ function renderProjectList() {
       `<span class="metric-simple-item">${m.label}: <strong>${m.value}</strong></span>`
     ).join(' &middot; ');
 
-    const tagsStr = (project.tags || []).join(' · ');
-
     return `
       <article class="project-item">
         <div class="project-top-row">
@@ -110,8 +108,6 @@ function renderProjectList() {
         <p class="project-summary-text">${project.tagline}</p>
 
         ${metricsStr ? `<div class="project-metrics-simple">${metricsStr}</div>` : ''}
-
-        <div class="project-tags-simple">${tagsStr}</div>
 
         <div class="project-actions-row">
           <a href="project.html?id=${project.id}" class="action-case-study">

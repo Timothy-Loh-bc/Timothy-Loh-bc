@@ -73,6 +73,19 @@ function renderProjectDetail() {
     </li>
   `).join('');
 
+  // Optional project demo (local file or direct video URL).
+  const video = caseStudy.video;
+  const videoHtml = video?.src ? `
+    <div class="case-video-wrapper">
+      <video class="case-video" controls playsinline preload="metadata"${video.poster ? ` poster="${video.poster}"` : ''} aria-label="${project.title} project video">
+        <source src="${video.src}">
+        Your browser does not support video playback.
+        <a href="${video.src}">Open the project video</a>.
+      </video>
+      ${video.caption ? `<p class="case-video-caption">${video.caption}</p>` : ''}
+    </div>
+  ` : '';
+
   // Screenshots (carousel)
   const screenshots = caseStudy.screenshots || [];
   const screenshotsHtml = screenshots.length ? `
@@ -108,8 +121,8 @@ function renderProjectDetail() {
   // Technical Challenges
   const challengesHtml = (caseStudy.technicalChallenges || []).map(ch => `
     <div class="challenge-item">
-      <div class="challenge-problem">Challenge: ${ch.challenge}</div>
-      <div class="challenge-solution">${ch.resolution}</div>
+      <h3 class="challenge-problem">${ch.challenge}</h3>
+      <div class="challenge-solution">${renderParagraphs(ch.resolution)}</div>
     </div>
   `).join('');
 
@@ -146,6 +159,7 @@ function renderProjectDetail() {
       <!-- Overview -->
 		<section class="case-section">
 		  <h2 class="case-section-title">Overview</h2>
+		  ${videoHtml}
 		  ${renderParagraphs(caseStudy.overview || project.summary)}
 		</section>
 
@@ -173,6 +187,20 @@ function renderProjectDetail() {
 		  </section>
 		` : ''}
 	  
+      ${challengesHtml ? `
+        <section class="case-section">
+          <h2 class="case-section-title">Technical Challenges</h2>
+          ${challengesHtml}
+        </section>
+      ` : ''}
+
+      ${caseStudy.leadershipLessons?.length ? `
+        <section class="case-section">
+          <h2 class="case-section-title">Reflection</h2>
+          ${renderParagraphs(caseStudy.leadershipLessons)}
+        </section>
+      ` : ''}
+
     </article>
 
     <div class="case-pagination">

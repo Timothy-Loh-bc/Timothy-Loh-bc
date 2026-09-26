@@ -7,21 +7,24 @@ const projectsData = [
     featured: true,
     roles: [""],
     period: "",
-    tags: ["C++", "Lua", "OpenGL", "Dear ImGui", "CMake"],
     accentColor: "from-blue-600 to-indigo-700",
     metrics: [
 	{ label: "Languages", value: "C++ / Lua" },
 	{ label: "Platform", value: "Windows" },
 	{ label: "Team Size", value: "9 members: 5 programmers, 2 designers, 2 artists" },
 	{ label: "Role", value: "Technical Lead" },	
-	{ label: "Dependencies", value: "GLFW, GLEW, GLM, Dear ImGui, FMOD, FreeType, yaml-cpp, sol2, CivetWeb, spdlog, stb" },
 	{ label: "Duration", value: "September 2025 to May 2026" },
+	{ label: "Dependencies", value: "GLFW, GLEW, GLM, Dear ImGui, FMOD, FreeType, yaml-cpp, sol2, CivetWeb, spdlog, stb" },
     ],
     summary: "Collaborated with Team Infernumb to develop the Hellmaker engine and editor as Technical Lead, contributing to the core framework, subsystem integration, and development diagnostics for Death's Refrain.",
     links: {
       github: "https://github.com/Timothy-Loh-bc/team-infernumb"
     },
     caseStudy: {
+      video: {
+        src: "assets/hellmaker/Infernumb_LevelEditorVideo.mp4",
+        caption: "Hellmaker level editor demonstration."
+      },
       overview: [
         "Hellmaker is a custom 2D game engine and editor developed by Team Infernumb to build Death's Refrain, an RPG set in a mythic underworld. The project combines a C++ runtime, a Dear ImGui editor, and Lua gameplay scripts within a shared development workflow.",
         "The engine and editor were developed collaboratively by Team Infernumb. As Technical Lead and Engine Champion, my contributions included the central framework, system registration and lifecycle management, subsystem integration, and the engine's browser diagnostics server. Other team members also contributed to both the engine and editor, including rendering, physics and collision, content authoring tools, and gameplay integration.",
@@ -38,6 +41,29 @@ const projectsData = [
         "Gameplay systems: physics and collision, Lua scripting and state machines, FMOD audio, dialogue, video playback, and scene transitions support the game's combat and narrative content.",
         "Content authoring: a Dear ImGui editor provides a scene hierarchy and component inspector, game view, tilemap editing, asset browsing, and undo/redo tools.",
         "Development diagnostics: an embedded CivetWeb server connects the engine to a browser interface for frame-time monitoring and runtime inspection. Editor tools also include a debug console, profiling, and build-size analysis."
+      ],
+      technicalChallenges: [
+        {
+          challenge: "Synchronizing Video and Audio",
+          resolution: [
+            "Keeping video and audio synchronized was much harder than I expected. Audio drifting out of sync became the main problem, and understanding how to approach it meant working through playback clocks, buffering, and the interaction between the main thread and FMOD's audio thread.",
+            "The solution was to use FMOD's audio clock as the timing reference and make the video follow it. I accounted for audio output buffering latency when calculating which frame to display, then decoded video toward that playback position with a limit on catch-up work per update. For audio, the main thread maintained a queue of decoded samples that FMOD consumed through its callback, with a mutex protecting access between the threads.",
+            "This resolved the synchronization problem. What stayed with me was that starting audio and video together does not guarantee they will stay together. I had to understand how timing moved through the entire playback pipeline, including the gap between processing audio and actually hearing it."
+          ]
+        },
+        {
+          challenge: "Reducing Texture Loading Times",
+          resolution: [
+            "As more art assets were added, the size of our textures quickly got out of hand. Opening the editor and launching the game took longer, making the cost of loading those assets hard to ignore. I researched GPU internal texture formats to understand how we could prepare the textures in a form better suited to runtime loading.",
+            "I implemented an import pipeline that converts PNG assets into BC3/DXT5 compressed textures. The importer decodes the image into RGBA pixels, compresses it in 4-by-4 blocks, and saves the dimensions and compressed data in a .compressedTex file. Existing converted files are reused, and the engine uploads their compressed blocks directly to OpenGL rather than decoding the source PNG again during normal loading.",
+            "This improved loading times for the editor and game while reducing the texture data needed on the GPU compared with uncompressed RGBA. The trade-off is that BC3 is lossy, so compression involves a balance between image quality and resource cost. The experience taught me that how assets are prepared can matter just as much as the code that loads them."
+          ]
+        }
+      ],
+      leadershipLessons: [
+        "The hardest part of this project for me was learning how to delegate. I wanted the architecture to feel solid before asking teammates to build on it. My plan was to establish the framework, write the interfaces, and then hand over the implementation. In my head, that would make everyone's work easier. In practice, our deadlines did not leave enough time for that approach, and I kept taking on more of the work myself.",
+        "That gave my teammates fewer opportunities to shape the project and feel ownership over it. I did not manage to resolve this during development, and it remains something I would approach differently. I enjoy the moment when the pieces of a system fit together, but I now see that waiting for everything to fit my picture can hold back the people building it with me.",
+        "Next time, I would give teammates meaningful work earlier, let them make decisions about their own systems, and help connect those systems to the framework as it develops. That means balancing idealism with realism. An implementation might not be how I would have written it, but if it works, meets the requirements, and is reasonably maintainable, it deserves to move forward. I want to get better at making room for other people's ideas and keeping the ball rolling, even when the architecture is still taking shape."
       ]
 	}
   },
