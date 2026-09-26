@@ -89,7 +89,7 @@ const projectsData = [
       videos: [
 	  {
         src: "assets/graphics_demos/cartoonshading.mp4",
-        caption: "Cartoon shading demo. This demo applies edge detection on top of cartoon shading to produce a more vivid, stylized result with emphasized outlines. It uses 6 render passes in its render pipeline. Pass 1: Blinn-Phong render (edge-detection pipeline); Pass 2: Gaussian blur vertical (edge-detection pipeline); Pass 3: Gaussian blur horizontal (edge-detection pipeline); Pass 4: Sobel edge detection (edge-detection pipeline); Pass 5: Cartoon shading render (cartoon pipeline); Pass 6: Combine and render to default framebuffer (combine together). In the video, edge detection using blur filtering is demonstrated, afterwards, the blur filtering is turned off to show the difference."
+        caption: "A six-pass pipeline combines Blinn-Phong rendering, Gaussian blur, Sobel edge detection, and cartoon shading. The video shows how enabling and disabling blur changes the resulting outlines."
       },{
         src: "assets/graphics_demos/blinn-phong.mp4",
         caption: "Blinn-Phong Demo. This demonstrates the Blinn-Phong shading technique, which produces smooth, realistic surfaces by interpolating vertex normals per pixel and applying a lighting model that combines ambient, diffuse, and specular components. This approach creates sharp, well-defined highlights, in contrast to the softer, blurred highlights seen with Gouraud shading."
@@ -110,7 +110,7 @@ const projectsData = [
         caption: "Portal demo. This demo demonstrates a real-time portal system by projecting a camera through a user-defined surface within a skybox environment. A ray is casted from the screen into the scene to determine where the portal should be placed, aligning it with the surface normal at the hit point. The result illustrates how screen-space picking, ray intersection, and custom projection matrices can be combined to achieve a real-time portal effect."
       },{
         src: "assets/graphics_demos/ogre.mp4",
-        caption: "Ogre demo. This demo showcases a deferred rendering pipeline used to efficiently render a large number of ogre instances. Geomtery is first rendered into multiple G-Buffers that store per-pixel attributes. A second pass is done afterwards, using the information from the G-Buffer to compute lighting and shading on a screen-space quad. This separation allows for complex lighting to be applied without re-rendering geometry."
+        caption: "Ogre demo. This demo showcases a deferred rendering pipeline used to efficiently render a large number of ogre instances. Geometry is first rendered into multiple G-Buffers that store per-pixel attributes. A second pass is done afterwards, using the information from the G-Buffer to compute lighting and shading on a screen-space quad. This separation allows for complex lighting to be applied without re-rendering geometry."
       },{
         src: "assets/graphics_demos/cursor_light.mp4",
         caption: "This demo contains three tabs. Tab 1: U/V adjustment with time | Tab 2: Colour gradient shift with time | Tab 3: Pitch black screen with radial cursor glow."
