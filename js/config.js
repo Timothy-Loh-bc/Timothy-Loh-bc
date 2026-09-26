@@ -4,7 +4,6 @@
  */
 const profileConfig = {
   name: "Timothy Loh",
-  roleTitle: "SIT DigiPen Real-Time Interactive Simulation Undergraduate",
   tagline: "Third year Computer Science undergraduate passionate about low-level computer systems and understanding what happens beneath the abstractions most of us take for granted. I enjoy working close to the hardware, exploring computer architecture and systems programming.",
   status: "Final-Year Undergraduate • Actively Seeking Internships",
   avatarUrl: "./assets/profile.jpeg",
@@ -12,7 +11,7 @@ const profileConfig = {
   // Education & Academics
   education: {
     degree: "Computer Science in Real-Time Interactive Simulation",
-    institution: "Singapore Institute of Technology | DigiPen Singapore",
+    institution: "Singapore Institute of Technology | DigiPen Institute of Technology Singapore",
     period: "2024 — Expected Graduation 2028",
     focus: "C++, Data Structures & Algorithms, Operating Systems, Networking, and Graphics"
   },

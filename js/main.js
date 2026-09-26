@@ -22,7 +22,6 @@ function initProfileData() {
 
   // Hero Section
   setText('hero-name', profileConfig.name);
-  setText('hero-role', profileConfig.roleTitle);
   setText('hero-tagline', profileConfig.tagline);
 
   // Profile Photo
