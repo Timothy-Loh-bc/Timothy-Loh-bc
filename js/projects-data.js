@@ -135,6 +135,62 @@ const projectsData = [
       ]
     }
   },
+  {
+    id: "strokenet",
+    title: "StrokeNet, A Networking Drawing Game",
+    tagline: "A multiplayer LAN drawing-and-guessing game built in C++, with an authoritative UDP server, synchronized drawing, and a custom message protocol.",
+    active: true,
+    featured: true,
+    roles: ["software-engineering", "backend"],
+    period: "",
+    metrics: [
+      { label: "Languages", value: "C++" },
+      { label: "Platform", value: "Windows" },
+      { label: "Team Size", value: "4 programmers" },
+      { label: "Role", value: "Architecture" },
+      { label: "Duration", value: "19th March 2026 - 31st March 2026" },
+      { label: "Dependencies", value: "SFML 3, Winsock, OpenSSL, RapidJSON" }
+    ],
+    summary: "Designed data flow between threads in the client and server, synchronization boundaries around shared state, and binary packet layouts for the game's network commands.",
+    links: { github: "" },
+    caseStudy: {
+      overview: [
+        "StrokeNet is a Pictionary-style multiplayer game developed by a team of four for CSD2161 Computer Networks at DigiPen Singapore. Players connect over a LAN, take turns drawing a secret word, and submit guesses through in-game chat.",
+        "I designed how data moves between threads in both the client and server, including the synchronization boundaries around shared state. I also defined the binary packet layouts for the different network commands, specifying what data each message carries and how it is encoded. The team worked together on the game's networking, interface, and gameplay features.",
+        "The server manages player sessions, drawing turns, words, scores, and history. The client presents the game through SFML, while a custom UDP protocol carries drawing commands and game updates."
+      ],
+      architecture: [
+        "Networking runs through a separate listener thread. Received drawing commands, chat messages, and score updates are stored in mutex-protected containers for the client to consume. On the server, the network listener and game loop share player and game state through explicit synchronization boundaries.",
+        "Each network command has a defined binary layout describing its message identifier, field order, field sizes, and payload. Shared protocol definitions keep the client and server aligned on how to encode and interpret those messages.",
+        "The protocol distinguishes request/response messages, acknowledged server notifications, and fire-and-forget updates. Important actions use acknowledgements and retries, while frequent drawing-extension updates use best-effort delivery.",
+        "We used a client-server architecture to give all players a single source of truth for turns, scores, and drawing state. The server coordinates the game, while clients send player actions and display the updates they receive."
+      ],
+      keyCapabilities: [
+        "Shared drawing: players see strokes, brush settings, erasing, and canvas clearing propagated through the server.",
+        "Game coordination: the server assigns the drawer, distributes word information, advances turns, and updates player scores across a three-round game.",
+        "Joining and discovery: clients can locate the server through LAN broadcast or a direct IP address. Players joining an active session receive drawing and chat history.",
+        "Communication and persistence: in-game chat supports guessing, with user accounts and high scores stored by the server."
+      ],
+      technicalChallenges: [
+        {
+          challenge: "Coordinating Threads, Mutexes, and Lock Ownership",
+          resolution: [
+            "My biggest challenge was reasoning about multithreading, especially mutexes and deadlocks. Network messages could arrive while the game loop was accessing shared state, so I had to think about which thread owned each operation and which data needed protection. A function that looked straightforward on its own became harder to reason about when it called other functions that also acquired locks.",
+            "I made it clear which server functions acquire mutexes and which expect the caller to have already acquired them, so nested calls do not try to lock the same mutex again. When an operation needs access to both game state and player data, it uses std::scoped_lock to acquire both mutexes together. On the client, mutexes protect the message containers shared by the network listener and the main thread, allowing received updates to pass safely between them.",
+            "This challenge pushed me to consider synchronization as part of the architecture. Protecting a container is only one part of the problem. I also had to track which locks were already held as one function called another, so a nested call would not acquire the same mutex again or access shared data without protection.",
+            "After the project, I realized that I needed to draw clearer boundaries around shared state. Even within the networking thread, it could become difficult to tell which mutexes were already held and which data was safe to access. Rather than carrying those assumptions through many nested calls, I would define a small number of entry points that acquire the necessary locks, then keep the work inside that boundary from acquiring those locks again. This would make the protected data and locking responsibilities easier to follow. We did not have time to implement that redesign within the project's constraints."
+          ]
+        },
+        {
+          challenge: "Winsock Hell",
+          resolution: [
+            "Working with the Windows API, especially Winsock, meant digging through what felt like mountains of documentation and examples on learn.microsoft.com. Reading about an individual function was often not enough to understand how it should fit into the application. I had to piece together socket configuration, blocking behavior, error handling, and cleanup across different examples, then work out which assumptions applied to our own client and server.",
+            "The examples on learn.microsoft.com gave me a starting point, but adapting them meant understanding why each call was there and what happened when it returned something unexpected. Through that process, the details that initially felt implicit became easier to recognize. It taught me that working with lower-level platform APIs involves as much reading, testing, and connecting scattered information as it does writing code."
+          ]
+        }
+      ]
+    }
+  },
 ];
 
 // Helper functions for easy filtering and retrieval
