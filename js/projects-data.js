@@ -4,11 +4,50 @@
 const projectOrder = [
   "Hellmaker 2D Engine/Editor",
   "strokenet",
+  "linux-assembly-sqrt",  
   "csd2151-graphics-demos",
-  "polygon-simplification"
+  "polygon-simplification",
 ];
 
 const projectsData = [
+  {
+    id: "linux-assembly-sqrt",
+    title: "Square Root in x86-64 Assembly",
+    tagline: "An ongoing Linux assembly project exploring square-root routines, the System V x86-64 ABI, and performance measurement against the C standard library.",
+    active: true,
+    featured: true,
+    roles: ["software-engineering"],
+    period: "",
+    metrics: [
+      { label: "Languages", value: "x86-64 Assembly / Shell" },
+      { label: "Platform", value: "Linux (Fedora in WSL)" },
+      { label: "Duration", value: "In progress" },
+      { label: "Tools", value: "GCC, GNU assembler (AT&T syntax), perf" }
+    ],
+    summary: "Implemented a naive square-root approximation in assembly and a wrapper around the C standard library's sqrt, with a shared driver and a shell script for repeated performance measurements.",
+    links: { github: "https://github.com/Timothy-Loh-bc/asm_projects" },
+    caseStudy: {
+      overview: [
+        "I started this project to get more comfortable writing x86-64 assembly on Linux, rather than only seeing the instructions produced by a compiler. The current focus is square-root computation and how assembly routines interact with the C standard library through the System V x86-64 calling convention.",
+        "So far, I have written a naive iterative approximation, a wrapper that calls the C standard library's sqrt, and a shared assembly driver that runs both versions over the same input list. A shell script builds the two executables with GCC and uses perf to repeat measurements. This is an ongoing learning project, not a completed or optimized replacement for sqrt."
+      ],
+      architecture: [
+        "The same main.s driver can be linked with any implementation of the sqroot function. All of them accept a double in xmm0 and return the result in the same register. Since the C standard library’s sqrt follows this convention too, the C standard library wrapper (sqroot_clib.s) only needs to align the stack before calling it.",
+        "The driver handles stack alignment, preserves caller-saved registers needed across function calls, and supplies the floating-point argument count when calling the variadic printf function.",
+        "The benchmark script builds both versions and runs perf stat with 20 repetitions using the task-clock event. These measurements currently cover the whole executable, including startup and output formatting, rather than isolating the square-root routine. This is not ideal and I am currently looking into changing this."
+      ],
+      technicalChallenges: [
+        {
+          challenge: "Keeping structure in assembly",
+          resolution: [
+            "One thing I am finding with assembly is how quickly the code can become messy without rules for myself. Registers do not have names like variables, and even a short routine can become difficult to follow when I keep changing which register holds what. Getting the instructions to work is one thing but coming back later and understanding why I wrote them that way is another.",
+            "I am trying to keep that structure through consistent register roles, descriptive labels, and comments that explain what each value represents. For example, I use rcx for counters and document the registers used by the square-root routine. Alongside those personal conventions, I have to follow the System V x86-64 ABI for argument passing, register preservation, and stack alignment when calling other functions.",
+            "This is still something I am working on. I do not want to rely on remembering every detail while the code is fresh in my head. Setting rules and sticking to them gives me a way to keep the program understandable as it grows, rather than letting each new block become its own set of assumptions."
+          ]
+        }
+      ]
+    }
+  },
   {
     id: "Hellmaker 2D Engine/Editor",
     title: "Hellmaker 2D Engine/Editor",

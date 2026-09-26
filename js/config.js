@@ -24,7 +24,7 @@ const profileConfig = {
   // Core Competencies / Skills
   skills: [
     { category: "Languages", items: ["C", "C++", "C#", "Python", "Lua", "SQL"]},
-	{ category: "Tools & Build", items: ["Jira", "Git", "CMake", "Make", "Visual Studio", "Batch Scripting"] },
+	{ category: "Tools & Build", items: ["GCC", "x86-64 Assembly", "Jira", "Git", "CMake", "Make", "Visual Studio", "Batch Scripting"] },
 	{ category: "Computer Science", items: ["Data structures & Algorithms", "Object-Oriented Programming","Memory Management", "Bit Manipulation Optimizations", "Computer architecture", "Networking", "Multithreading"] },
 	{ category: "Game Development", items: ["Unity","Entity Component System","Shader Programming","ImGui","GLFW"] }
   ],
