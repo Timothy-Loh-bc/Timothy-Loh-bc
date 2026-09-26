@@ -1,8 +1,8 @@
 # [Your Name] — Portfolio
 
-[![Portfolio](https://timothy-loh-bc.github.io/Timothy-Loh-bc/)]
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](YOUR_LINKEDIN_URL)
-[![Email](https://img.shields.io/badge/Email-Contact_Me-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:YOUR_EMAIL_ADDRESS)
+[![Portfolio](https://img.shields.io/badge/Portfolio-View_Site-6366f1?style=for-the-badge&logo=googlechrome&logoColor=white)](https://timothy-loh-bc.github.io/Timothy-Loh-bc/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/timothyloh2001/)
+[![Email](https://img.shields.io/badge/Email-Contact_Me-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:lohbctimothy@gmail.com)
 
 > [A short introduction describing who you are, what you build, and the opportunities you are seeking.]
 
