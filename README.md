@@ -1,6 +1,6 @@
 # [Your Name] — Portfolio
 
-[![Portfolio] (https://timothy-loh-bc.github.io/Timothy-Loh-bc/)
+[![Portfolio] (https://timothy-loh-bc.github.io/Timothy-Loh-bc/)]
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](YOUR_LINKEDIN_URL)
 [![Email](https://img.shields.io/badge/Email-Contact_Me-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:YOUR_EMAIL_ADDRESS)
 
