@@ -509,6 +509,7 @@ section {
 }
 
 /* Contact Section */
+.section-card,
 .contact-section-inner {
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
