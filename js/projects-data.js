@@ -191,6 +191,43 @@ const projectsData = [
       ]
     }
   },
+  {
+    id: "polygon-simplification",
+    title: "Area-Preserving Polygon Simplification",
+    tagline: "A C++ implementation of area-preserving segment collapse, reducing polygon vertex counts while limiting shape displacement and checking for intersections.",
+    active: true,
+    featured: true,
+    roles: ["software-engineering"],
+    period: "",
+    metrics: [
+      { label: "Languages", value: "C++ / Python" },
+      { label: "Team Size", value: "4 members" },
+      { label: "Role", value: "Implementation" },
+      { label: "Duration", value: "May 2026 to June 2026" },
+      { label: "Tools", value: "GCC, Make, Python for benchmarking" }
+    ],
+    summary: "Implemented a greedy polygon simplification algorithm with area-preserving point placement, priority-queue candidate selection, and spatially indexed topology checks.",
+    links: { github: "https://github.com/Timothy-Loh-bc/CSD2183-Homework-2-Polygon-Simplification" },
+    caseStudy: {
+      overview: [
+        "This project was developed by a team of four for CSD2183 Data Structures at Singapore Institute of Technology. It implements Area-Preserving Segment Collapse, based on work by Kronenfeld and collaborators, as a command-line tool for simplifying polygons, including polygons with holes.",
+        "My role was implementation, while teammates handled the report, video and presentation, and AI prompt refinement. The project used AI assistance during development, with an accompanying disclosure report in the repository.",
+        "The tool reads polygon rings from CSV and attempts to reduce their total vertex count to a requested target. Each step replaces two neighboring vertices with a new point selected to preserve signed area mathematically and limit local shape displacement. Intersection checks reject unsafe collapses, so simplification can stop before reaching the target."
+      ],
+      architecture: [
+        "Each polygon ring is represented as a circular doubly linked list, allowing a collapse to update neighboring vertices without shifting an entire array. A min-heap orders candidate collapses by their displacement cost.",
+        "Point placement uses a four-vertex neighborhood to construct an area-preserving line. Candidate points are evaluated where that line intersects the surrounding edge lines, with the lower-displacement valid placement selected. A proximity limit guards against excessively distant placements from nearly parallel lines.",
+        "A uniform spatial grid narrows the existing edges considered during intersection checks. Removed edges are pruned lazily, and vertex generation counters identify outdated priority-queue candidates after a neighborhood changes.",
+        "The code separates input/output, geometric predicates, point placement, and collapse execution. A Python script supports experimental plots of runtime, memory use, and displacement as input size and target vertex count vary."
+      ],
+      keyCapabilities: [
+        "Polygon simplification: processes multiple rings and holes, aiming to preserve signed ring area within floating-point precision while reducing vertices.",
+        "Shape preservation: greedily prioritizes collapses with lower local areal displacement rather than removing vertices solely by distance.",
+        "Topology checks: tests proposed edges against nearby existing edges and checks for existing vertices lying inside a new edge, addressing both crossings and self-touching cases.",
+        "Validation and evaluation: includes 15 supplied cases and eight additional cases covering concave shapes, narrow features, and holes, alongside area and displacement output statistics."
+      ]
+    }
+  },
 ];
 
 // Helper functions for easy filtering and retrieval
