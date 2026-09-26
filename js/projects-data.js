@@ -148,7 +148,7 @@ const projectsData = [
       { label: "Platform", value: "Windows" },
       { label: "Team Size", value: "4 programmers" },
       { label: "Role", value: "Architecture" },
-      { label: "Duration", value: "19th March 2026 - 31st March 2026" },
+      { label: "Duration", value: "19th March 2026 to 31st March 2026" },
       { label: "Dependencies", value: "SFML 3, Winsock, OpenSSL, RapidJSON" }
     ],
     summary: "Designed data flow between threads in the client and server, synchronization boundaries around shared state, and binary packet layouts for the game's network commands.",
