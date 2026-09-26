@@ -131,6 +131,13 @@ function renderProjectDetail() {
     <header class="case-header">
       <h1 class="case-title">${project.title}</h1>
       <p class="case-tagline">${project.tagline}</p>
+      ${project.links?.github ? `
+        <div class="case-links">
+          <a href="${project.links.github}" class="action-github" target="_blank" rel="noopener noreferrer">
+            View on GitHub <span aria-hidden="true">&nearr;</span>
+          </a>
+        </div>
+      ` : ''}
     </header>
 
     ${metricsHtml ? `<div class="case-metrics-simple">${metricsHtml}</div>` : ''}
