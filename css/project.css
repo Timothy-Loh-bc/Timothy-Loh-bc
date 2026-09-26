@@ -359,3 +359,69 @@
   margin-top: 3rem;
   font-size: 0.9rem;
 }
+
+@media (max-width: 600px) {
+  .back-row {
+    margin-bottom: 1rem;
+  }
+  .case-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+  }
+  .case-title {
+    font-size: 1.5rem;
+    overflow-wrap: anywhere;
+  }
+  .case-tagline {
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+  .case-metrics-simple {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+  .case-metrics-simple > div {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .metric-box-val {
+    font-size: 0.95rem;
+  }
+  .metric-box-lbl {
+    font-size: 0.7rem;
+  }
+  .case-section {
+    padding: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .case-section-title {
+    font-size: 1rem;
+  }
+  .case-body-text {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+  }
+  .case-carousel-slide img {
+    height: 220px;
+    object-fit: contain;
+  }
+  .case-video-navigation button {
+    min-height: 44px;
+    font-size: 0.85rem;
+  }
+  .case-pagination {
+    align-items: flex-start;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .case-pagination > * {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .case-pagination > :last-child {
+    text-align: right;
+  }
+}

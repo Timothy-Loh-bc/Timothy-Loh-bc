@@ -628,13 +628,119 @@ section {
 }
 
 @media (max-width: 600px) {
-  .hero-name {
-    font-size: 1.85rem;
+  body {
+    padding-bottom: 2rem;
+  }
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .header {
+    padding: 0.85rem 0;
+    margin-bottom: 1.75rem;
+  }
+  .nav-row {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .nav-row nav {
+    width: 100%;
   }
   .nav-links {
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+  }
+  .nav-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    font-size: 0.85rem;
+  }
+  section,
+  .hero {
+    margin-bottom: 2rem;
+  }
+  .section-title {
+    margin-bottom: 0.85rem;
+    font-size: 1rem;
+  }
+  .hero-header-row {
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .hero-text-col {
+    min-width: 0;
+  }
+  .hero-photo-container {
+    width: 64px;
+    height: 64px;
+  }
+  .hero-name {
+    font-size: 1.65rem;
+  }
+  .hero-role {
+    font-size: 0.95rem;
+    line-height: 1.45;
+    margin-bottom: 0;
+  }
+  .hero-bio {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  .hero-links {
+    gap: 0.5rem;
+  }
+  .link-pill,
+  .btn-simple {
+    min-height: 44px;
+    justify-content: center;
+  }
+  .section-card,
+  .contact-section-inner,
+  .project-item {
+    padding: 1rem;
+  }
+  .project-top-row {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+  .project-heading {
+    font-size: 1.05rem;
+    overflow-wrap: anywhere;
+  }
+  .project-metrics-simple {
+    gap: 0.35rem;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+  .project-actions-row {
+    gap: 0.75rem;
+  }
+  .action-case-study {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .direct-email {
+    flex-basis: 100%;
+    overflow-wrap: anywhere;
+  }
+  .contact-row {
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .input-simple,
+  .textarea-simple {
+    font-size: 16px;
+  }
+  .toast {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
   }
   .footer {
+    margin-top: 2rem;
     flex-direction: column;
     gap: 0.5rem;
     align-items: flex-start;
