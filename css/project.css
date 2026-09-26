@@ -122,6 +122,37 @@
   margin-bottom: 1.25rem;
 }
 
+.case-video-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.case-video-slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+.case-video-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.case-video-count {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.case-video-navigation button {
+  background: var(--bg-secondary);
+  cursor: pointer;
+  font: inherit;
+}
+
 .case-video-caption {
   margin-top: 0.75rem;
   color: var(--text-muted);

@@ -74,15 +74,26 @@ function renderProjectDetail() {
   `).join('');
 
   // Optional project demo (local file or direct video URL).
-  const video = caseStudy.video;
-  const videoHtml = video?.src ? `
+  const videos = (caseStudy.videos || (caseStudy.video ? [caseStudy.video] : [])).filter(video => video?.src);
+  const videoHtml = videos.length ? `
     <div class="case-video-wrapper">
-      <video class="case-video" controls playsinline preload="metadata"${video.poster ? ` poster="${video.poster}"` : ''} aria-label="${project.title} project video">
+      <div class="case-video-carousel" aria-label="Project videos">
+        ${videos.map((video, index) => `
+        <figure class="case-video-slide" data-video="${index}">
+      <video class="case-video" controls playsinline preload="auto"${video.poster ? ` poster="${video.poster}"` : ''} aria-label="${project.title} project video ${index + 1}">
         <source src="${video.src}">
         Your browser does not support video playback.
         <a href="${video.src}">Open the project video</a>.
       </video>
-      ${video.caption ? `<p class="case-video-caption">${video.caption}</p>` : ''}
+      ${video.caption ? `<figcaption class="case-video-caption">${video.caption}</figcaption>` : ''}
+        </figure>`).join('')}
+      </div>
+      ${videos.length > 1 ? `
+        <div class="case-video-navigation">
+          <button type="button" class="case-video-prev action-github" aria-label="Previous video">&larr; Previous</button>
+          <span class="case-video-count" aria-live="polite">1 / ${videos.length}</span>
+          <button type="button" class="case-video-next action-github" aria-label="Next video">Next &rarr;</button>
+        </div>` : ''}
     </div>
   ` : '';
 
@@ -144,13 +155,13 @@ function renderProjectDetail() {
     <header class="case-header">
       <h1 class="case-title">${project.title}</h1>
       <p class="case-tagline">${project.tagline}</p>
-      ${project.links?.github ? `
+      ${project.links?.github?.trim() ? `
         <div class="case-links">
           <a href="${project.links.github}" class="action-github" target="_blank" rel="noopener noreferrer">
             View on GitHub <span aria-hidden="true">&nearr;</span>
           </a>
         </div>
-      ` : ''}
+      ` : '<p class="project-code-notice">Developed at DigiPen Singapore. The source code is not publicly available.</p>'}
     </header>
 
     ${metricsHtml ? `<div class="case-metrics-simple">${metricsHtml}</div>` : ''}
@@ -219,6 +230,34 @@ function renderProjectDetail() {
   `;
 
   initCarousel(container, screenshots);
+  initVideoCarousel(container);
+}
+
+function initVideoCarousel(container) {
+  const wrapper = container.querySelector('.case-video-wrapper');
+  if (!wrapper) return;
+  const carousel = wrapper.querySelector('.case-video-carousel');
+  const slides = [...carousel.querySelectorAll('.case-video-slide')];
+  if (slides.length <= 1) return;
+  const count = wrapper.querySelector('.case-video-count');
+  let index = 0;
+
+  function showVideo(nextIndex) {
+    const target = (nextIndex + slides.length) % slides.length;
+    carousel.scrollTo({ left: slides[target].offsetLeft - slides[0].offsetLeft, behavior: 'smooth' });
+  }
+
+  wrapper.querySelector('.case-video-prev').addEventListener('click', () => showVideo(index - 1));
+  wrapper.querySelector('.case-video-next').addEventListener('click', () => showVideo(index + 1));
+  carousel.addEventListener('scroll', () => {
+    const nextIndex = Math.round(carousel.scrollLeft / carousel.clientWidth);
+    if (nextIndex === index || nextIndex >= slides.length) return;
+    index = nextIndex;
+    count.textContent = `${index + 1} / ${slides.length}`;
+    slides.forEach((slide, i) => {
+      if (i !== index) slide.querySelector('video').pause();
+    });
+  }, { passive: true });
 }
 
 function initCarousel(container, screenshots) {

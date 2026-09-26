@@ -113,11 +113,11 @@ function renderProjectList() {
           <a href="project.html?id=${project.id}" class="action-case-study">
             Read More &rarr;
           </a>
-          ${project.links?.github ? `
+          ${project.links?.github?.trim() ? `
             <a href="${project.links.github}" class="action-github" target="_blank" rel="noopener noreferrer">
               GitHub <span aria-hidden="true">&nearr;</span>
             </a>
-          ` : ''}
+          ` : '<p class="project-code-notice">Developed at DigiPen Singapore. The source code is not publicly available.</p>'}
         </div>
       </article>
     `;

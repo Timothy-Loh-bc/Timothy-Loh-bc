@@ -455,6 +455,7 @@ section {
 
 .project-actions-row {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 1.25rem;
   font-size: 0.9rem;
@@ -463,6 +464,16 @@ section {
 .action-case-study {
   font-weight: 600;
   color: var(--accent-link);
+}
+
+.project-code-notice {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.project-actions-row .project-code-notice {
+  flex-basis: 100%;
 }
 
 .action-github {

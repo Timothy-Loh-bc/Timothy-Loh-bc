@@ -18,13 +18,13 @@ const projectsData = [
     ],
     summary: "Collaborated with Team Infernumb to develop the Hellmaker engine and editor as Technical Lead, contributing to the core framework, subsystem integration, and development diagnostics for Death's Refrain.",
     links: {
-      github: "https://github.com/Timothy-Loh-bc/team-infernumb"
+      github: ""
     },
     caseStudy: {
-      video: {
+      videos: [{
         src: "assets/hellmaker/Infernumb_LevelEditorVideo.mp4",
         caption: "Hellmaker level editor demonstration."
-      },
+      }],
       overview: [
         "Hellmaker is a custom 2D game engine and editor developed by Team Infernumb to build Death's Refrain, an RPG set in a mythic underworld. The project combines a C++ runtime, a Dear ImGui editor, and Lua gameplay scripts within a shared development workflow.",
         "The engine and editor were developed collaboratively by Team Infernumb. As Technical Lead and Engine Champion, my contributions included the central framework, system registration and lifecycle management, subsystem integration, and the engine's browser diagnostics server. Other team members also contributed to both the engine and editor, including rendering, physics and collision, content authoring tools, and gameplay integration.",
@@ -66,6 +66,74 @@ const projectsData = [
         "Next time, I would give teammates meaningful work earlier, let them make decisions about their own systems, and help connect those systems to the framework as it develops. That means balancing idealism with realism. An implementation might not be how I would have written it, but if it works, meets the requirements, and is reasonably maintainable, it deserves to move forward. I want to get better at making room for other people's ideas and keeping the ball rolling, even when the architecture is still taking shape."
       ]
 	}
+  },
+  {
+    id: "csd2151-graphics-demos",
+    title: "Interactive Graphics Demos",
+    tagline: "A collection of C++ and GLSL demos exploring ray tracing, lighting, environment mapping, and rendering across multiple passes, developed throughout my CSD2151 module.",
+    active: true,
+    featured: true,
+    roles: ["software-engineering", "graphics"],
+    period: "",
+    metrics: [
+    { label: "Languages", value: "C++ / GLSL" },
+    { label: "Platform", value: "Windows" },
+	{ label: "Duration", value: "January 2026 to May 2026"},
+    { label: "Dependencies", value: "GLFW, GLEW, GLM, stb_image" }
+    ],
+    summary: "Implemented interactive rendering demos within a supplied graphics framework, connecting C++ scene setup and GPU data management with GLSL shaders for different rendering techniques.",
+    links: {
+      github: ""
+    },
+    caseStudy: {
+      videos: [
+	  {
+        src: "assets/graphics_demos/cartoonshading.mp4",
+        caption: "Cartoon shading demo. This demo applies edge detection on top of cartoon shading to produce a more vivid, stylized result with emphasized outlines. It uses 6 render passes in its render pipeline. Pass 1: Blinn-Phong render (edge-detection pipeline); Pass 2: Gaussian blur vertical (edge-detection pipeline); Pass 3: Gaussian blur horizontal (edge-detection pipeline); Pass 4: Sobel edge detection (edge-detection pipeline); Pass 5: Cartoon shading render (cartoon pipeline); Pass 6: Combine and render to default framebuffer (combine together). In the video, edge detection using blur filtering is demonstrated, afterwards, the blur filtering is turned off to show the difference."
+      },{
+        src: "assets/graphics_demos/blinn-phong.mp4",
+        caption: "Blinn-Phong Demo. This demonstrates the Blinn-Phong shading technique, which produces smooth, realistic surfaces by interpolating vertex normals per pixel and applying a lighting model that combines ambient, diffuse, and specular components. This approach creates sharp, well-defined highlights, in contrast to the softer, blurred highlights seen with Gouraud shading."
+      },{
+        src: "assets/graphics_demos/raycasting.mp4",
+        caption: "Raycasting demo. This demo renders a 2D map as a pseudo-3D scene. It casts one ray per screen column from the player's position, computing the distance to the nearest wall in the grid-based world. These distances are then used to determine wall height and shading, producing a perspective correct visualization of the environment."
+      },{
+        src: "assets/graphics_demos/raytracing.mp4",
+        caption: "Raytracing demo. This demo showcases real-time ray tracing of a small scene containing multiple moving spheres. Rays are casted from the camera through each pixel to compute intersections with the scene geometry, allowing for accurate lighting and shading effects such as reflections and material-based colouring. The result illustrates how ray tracing can produce a physically based visual by directly simulating ray-object intersections."
+      },{
+        src: "assets/graphics_demos/env-mapping.mp4",
+        caption: "Environment Mapping Demo. This demonstrates real-time environment mapping on different geometric primitives. It allows interactive adjustment of the reflection factor and index of refraction, illustrating how these parameters influence the blending between reflected and refracted environment samples on the object's surface."
+      },{
+        src: "assets/graphics_demos/nightsky.mp4",
+        caption: "Night sky demo. This demo is a real-time 3D scene rendered with a skybox and dynamic lighting. It uses a cubemap based skybox to simulate the surrounding environment, while the scene itself is lit using a combination of shading techniques and a directional light source. Fog is also applied based on distance to add atmospheric depth, and different materials are showcased across objects, including checkerboard, Phong, discard-based, and cartoon shading."
+      },{
+        src: "assets/graphics_demos/portal.mp4",
+        caption: "Portal demo. This demo demonstrates a real-time portal system by projecting a camera through a user-defined surface within a skybox environment. A ray is casted from the screen into the scene to determine where the portal should be placed, aligning it with the surface normal at the hit point. The result illustrates how screen-space picking, ray intersection, and custom projection matrices can be combined to achieve a real-time portal effect."
+      },{
+        src: "assets/graphics_demos/ogre.mp4",
+        caption: "Ogre demo. This demo showcases a deferred rendering pipeline used to efficiently render a large number of ogre instances. Geomtery is first rendered into multiple G-Buffers that store per-pixel attributes. A second pass is done afterwards, using the information from the G-Buffer to compute lighting and shading on a screen-space quad. This separation allows for complex lighting to be applied without re-rendering geometry."
+      },{
+        src: "assets/graphics_demos/cursor_light.mp4",
+        caption: "This demo contains three tabs. Tab 1: U/V adjustment with time | Tab 2: Colour gradient shift with time | Tab 3: Pitch black screen with radial cursor glow."
+      }],
+      overview: [
+        "This project brings together graphics assignments completed for CSD2151 at DigiPen Singapore. The application presents nine interactive demos covering ray casting, ray tracing, lighting, environment mapping, skyboxes, cartoon shading, portals, and deferred rendering.",
+        "The work builds on a supplied graphics framework rather than an engine written entirely from scratch. My contributions include demo implementations, shader code, scene setup, and changes to the application that brings the demos together.",
+        "Each demo connects a rendering technique to a working scene, from calculating ray intersections to coordinating framebuffer passes and transferring scene data to shaders."
+      ],
+      architecture: [
+        "A shared window manager runs the application and its demo windows. Individual demo modules configure cameras, objects, textures, shader programs, callbacks, and rendering passes, while the main window presents previews of the demos.",
+        "C++ code manages scene state and OpenGL resources, with uniforms and GPU buffers supplying shader inputs. Vertex, fragment, and compute shaders perform the relevant rendering work.",
+        "Techniques that need intermediate results use framebuffer textures across multiple passes. The cartoon demo combines shading, horizontal and vertical Gaussian blur, Sobel edge detection, and final compositing. Deferred rendering separates surface-data generation from lighting."
+      ],
+      keyCapabilities: [
+        "Ray casting and ray tracing: shader-based ray intersection demos, including sphere data supplied through a shader storage buffer.",
+        "Lighting and surface detail: Blinn-Phong shading, interactive camera controls, and tangent-space normal mapping.",
+        "Environment rendering: reflection and refraction demos, skybox rendering, and a night-sky scene.",
+        "Cartoon shading: a sequence of rendering passes combining Gaussian blur and Sobel edge detection with shaded scene output.",
+        "Portal projection: portal placement using ray intersections with skybox walls and a projection matrix derived from the portal's position and orientation.",
+        "Deferred rendering: a geometry pass stores positions, normals, and diffuse color in framebuffer attachments for a subsequent lighting pass."
+      ]
+    }
   },
 ];
 
