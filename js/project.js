@@ -88,10 +88,10 @@ function renderProjectDetail() {
         </div>
         ${screenshots.length > 1 ? '<button class="case-carousel-arrow case-carousel-next" aria-label="Next screenshot">&rarr;</button>' : ''}
       </div>
-      ${screenshots[0]?.caption ? `<div class="case-carousel-caption">${screenshots[0].caption}</div>` : ''}
+      <div class="case-carousel-caption" aria-live="polite">${screenshots[0]?.caption || ''}</div>
       ${screenshots.length > 1 ? `
         <div class="case-carousel-dots">
-          ${screenshots.map((_, i) => `<span class="case-carousel-dot${i === 0 ? ' active' : ''}" data-dot="${i}"></span>`).join('')}
+          ${screenshots.map((_, i) => `<button class="case-carousel-dot${i === 0 ? ' active' : ''}" data-dot="${i}" type="button" aria-label="Show screenshot ${i + 1}" aria-current="${i === 0 ? 'true' : 'false'}"></button>`).join('')}
         </div>
       ` : ''}
     </div>
@@ -199,13 +199,16 @@ function initCarousel(container, screenshots) {
 
   function update() {
     track.style.transform = `translateX(-${index * 100}%)`;
-    caption.textContent = screenshots[index]?.caption || '';
-    dots.forEach((d, i) => d.classList.toggle('active', i === index));
+    if (caption) caption.textContent = screenshots[index]?.caption || '';
+    dots.forEach((dot, i) => {
+      const isActive = i === index;
+      dot.classList.toggle('active', isActive);
+      dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+    });
+    carousel.dataset.index = index;
   }
 
   if (screenshots.length <= 1) {
-    prevBtn.style.display = 'none';
-    nextBtn.style.display = 'none';
     return;
   }
 
@@ -224,6 +227,11 @@ function initCarousel(container, screenshots) {
       index = parseInt(dot.dataset.dot, 10);
       update();
     });
+  });
+
+  carousel.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft') prevBtn.click();
+    if (event.key === 'ArrowRight') nextBtn.click();
   });
 }
 

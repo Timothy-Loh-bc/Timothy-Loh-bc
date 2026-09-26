@@ -23,7 +23,7 @@ const projectsData = [
     caseStudy: {
 	  screenshots: [
 		{
-		  src: "assets/hellmaker/isystem.png",
+		  src: "assets/hellmaker/ISystem.png",
 		  caption: "Systems inheriting from ISystem base class"
 		},
 		{
