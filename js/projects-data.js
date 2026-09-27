@@ -4,6 +4,7 @@
 const projectOrder = [
   "Hellmaker 2D Engine/Editor",
   "linux-assembly-sqrt",  
+  "kd-tree-ray-acceleration",
   "strokenet",
   "csd2151-graphics-demos",
   "polygon-simplification",
@@ -181,6 +182,66 @@ const projectsData = [
         "Cartoon shading: a sequence of rendering passes combining Gaussian blur and Sobel edge detection with shaded scene output.",
         "Portal projection: portal placement using ray intersections with skybox walls and a projection matrix derived from the portal's position and orientation.",
         "Deferred rendering: a geometry pass stores positions, normals, and diffuse color in framebuffer attachments for a subsequent lighting pass."
+      ]
+    }
+  },
+  {
+    id: "kd-tree-ray-acceleration",
+    title: "KD-Tree Ray Intersection Implementation",
+    tagline: "A C++20 KD-tree implementation using surface-area-heuristic splitting and near-to-far traversal, written within a professor-provided graphics framework.",
+    active: true,
+    featured: true,
+    roles: ["software-engineering", "graphics"],
+    period: "",
+    metrics: [
+      { label: "Language", value: "C++20" },
+      { label: "Platform", value: "Windows" },
+      { label: "Duration", value: "June 2026 to July 2026" },
+      { label: "Dependencies", value: "GLM, OpenGL, GLFW, GLAD, Dear ImGui, GoogleTest, fmt" }
+    ],
+    summary: "Implemented the KD-tree data structure, construction algorithm, and ray traversal in kdtree.hpp and kdtree.cpp, using sweep-based surface-area-heuristic splitting and compact 64-bit nodes.",
+    links: { github: "" },
+    caseStudy: {
+      videos: [
+	  {
+        src: "assets/graphics_demos/kdtree.mp4",
+        caption: "Kd-Tree demonstration. Using bit-manipulation to pack data tightly as well as other optimizations to reduce the number of expensive checks per frame."
+      }],		
+      overview: [
+        "This project was completed for CSD3151 at DigiPen Singapore. My contribution consisted of implementing the kdtree structure that accelerates closest-hit ray queries over triangle geometry.",
+        "I used the supplied GoogleTest suite to compare the KD-tree with brute-force intersection results across randomized rays and verify that it reduces the number of triangle tests."
+      ],
+      architecture: [
+        "Construction begins with the scene's bounding box and recursively selects split planes using a surface area heuristic. A sweep of triangle start and end events evaluates candidates along all three axes without rebuilding the left and right counts for every position.",
+        "Triangles that cross a split plane are included in both child voxels. Configurable depth and triangle-count limits stop subdivision, while a leaf-cost comparison prevents splits that are estimated to cost more than direct intersection testing.",
+        "Each node occupies eight bytes. Two bits encode either the split axis or leaf marker, 30 bits store a right-child index or primitive count, and the remaining 32 bits store a split position or primitive offset.",
+        "Ray traversal intersects the root bounding box, visits the near child first, and only visits the far child when the current closest hit does not already lie before the split plane. Leaf nodes test their contiguous triangle ranges and retain the nearest valid hit."
+      ],
+      keyCapabilities: [
+        "Implemented a sweep-based surface area heuristic across the X, Y, and Z axes.",
+        "Supported configurable traversal cost, intersection cost, maximum depth, and minimum leaf size.",
+        "Implemented a compact packed-node representation with contiguous node and triangle storage.",
+        "Implemented closest-hit ray queries with near-to-far traversal and early pruning.",
+        "Implemented the interfaces required by the supplied framework to expose tree depth, node count, bounding-box traversal, and tested triangles.",
+        "Validated the implementation with the supplied randomized correctness and efficiency tests."
+      ],
+      technicalChallenges: [
+        {
+          challenge: "Handling Split Boundaries and Overlapping Triangles",
+          resolution: [
+            "A triangle can cross a candidate split plane, lie directly on it, or extend beyond the current voxel. Treating every triangle as belonging to only one child caused the hierarchy to miss valid intersections.",
+            "I clipped each triangle's axis-aligned extent to the current voxel before evaluating split events. Triangles that straddle the chosen plane are duplicated into both children, while triangles lying flat on the plane follow a consistent side rule.",
+            "I validated the resulting structure by comparing its closest-hit results with brute-force queries over randomized rays, including rays originating from different positions and travelling in different directions."
+          ]
+        },
+        {
+          challenge: "Making Traversal Correct Without Sacrificing Pruning",
+          resolution: [
+            "Traversal has to account for ray direction, split-plane crossing time, parallel rays, and rays that begin inside a bounding box. Incorrect near/far ordering or interval handling can skip the closest triangle even when the tree itself is valid.",
+            "I carried the ray's valid interval through each recursive call, selected the near child from the ray origin and direction, and guarded the split calculation for near-zero direction components. After visiting the near child, traversal skips the far child when an existing hit is already closer than the split plane.",
+            "Instrumentation records bounding-box and triangle tests for both visualization and automated comparisons, making traversal behaviour easier to inspect rather than relying only on the final rendered result."
+          ]
+        }
       ]
     }
   },
