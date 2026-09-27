@@ -182,8 +182,8 @@ section {
 }
 
 .hero-photo-container {
-  width: 96px;
-  height: 96px;
+  width: 128px;
+  height: 128px;
   border-radius: 50%;
   border: 1px solid var(--border-color);
   background: var(--bg-secondary);
@@ -672,8 +672,8 @@ section {
     min-width: 0;
   }
   .hero-photo-container {
-    width: 64px;
-    height: 64px;
+    width: 80px;
+    height: 80px;
   }
   .hero-name {
     font-size: 1.65rem;
