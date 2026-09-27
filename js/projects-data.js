@@ -244,7 +244,7 @@ const projectsData = [
     id: "polygon-simplification",
     title: "Area-Preserving Polygon Simplification",
     tagline: "A C++ implementation of area-preserving segment collapse, reducing polygon vertex counts while limiting shape displacement and checking for intersections.",
-    active: true,
+    active: false,
     featured: true,
     roles: ["software-engineering"],
     period: "",
