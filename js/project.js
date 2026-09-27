@@ -40,7 +40,7 @@ function renderProjectDetail() {
   document.title = `${project.title} — ${authorName}`;
 
   // Sync Brand, Navigation and Footer
-  document.querySelectorAll('.brand-name').forEach(el => el.textContent = authorName);
+  document.querySelectorAll('.brand-name').forEach(el => el.textContent = 'Portfolio');
   const navResume = document.getElementById('nav-resume-link');
   if (navResume && typeof profileConfig !== 'undefined' && profileConfig.contact?.resumeUrl) {
     navResume.href = profileConfig.contact.resumeUrl;

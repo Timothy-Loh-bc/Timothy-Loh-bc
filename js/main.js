@@ -15,7 +15,7 @@ function initProfileData() {
   // Document Title & Brand Header
   if (profileConfig.name) {
     document.title = `${profileConfig.name} | Portfolio`;
-    document.querySelectorAll('.brand-name').forEach(el => el.textContent = profileConfig.name);
+    document.querySelectorAll('.brand-name').forEach(el => el.textContent = 'Portfolio');
     const footerName = document.getElementById('footer-author-name');
     if (footerName) footerName.textContent = profileConfig.name;
   }
