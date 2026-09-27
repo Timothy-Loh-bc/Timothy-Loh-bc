@@ -15,6 +15,6 @@ My interests lie in low-level programming and performance optimization, particul
 I also enjoy planning out software architecture. When everything works together, it reminds me of a symphony. The just pieces together nicely. Experience has also taught me that clean architecture is often an ideal to work towards rather than something that can be achieved perfectly, especially when balancing real-world constraints and trade-offs.
 
 
-- **Current role or course:** BSc Undergraduate in Real-Time Interactive Simulation | DigiPen Singapore | Singapore Institute of Technology
+- **Education:** BSc Undergraduate in Real-Time Interactive Simulation | DigiPen Institute of Technology Singapore | Singapore Institute of Technology
 - **Based in:** Singapore
 - **Open to:** Internship from May 2027 to May 2028
