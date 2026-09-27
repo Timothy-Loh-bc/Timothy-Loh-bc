@@ -3,8 +3,8 @@
 // Active projects omitted from this list appear at the end.
 const projectOrder = [
   "Hellmaker 2D Engine/Editor",
-  "strokenet",
   "linux-assembly-sqrt",  
+  "strokenet",
   "csd2151-graphics-demos",
   "polygon-simplification",
 ];
@@ -65,7 +65,7 @@ const projectsData = [
 	{ label: "Duration", value: "September 2025 to May 2026" },
 	{ label: "Dependencies", value: "GLFW, GLEW, GLM, Dear ImGui, FMOD, FreeType, yaml-cpp, sol2, CivetWeb, spdlog, stb" },
     ],
-    summary: "Collaborated with Team Infernumb to develop the Hellmaker engine and editor as Technical Lead, contributing to the core framework, subsystem integration, and development diagnostics for Death's Refrain.",
+    summary: "As Technical Lead for Team Infernumb, I helped develop the Hellmaker engine and editor, contributing to the core framework, subsystem integration, and development diagnostics for Death's Refrain.",
     links: {
       github: ""
     },
