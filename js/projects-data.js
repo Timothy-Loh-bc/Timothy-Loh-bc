@@ -24,12 +24,12 @@ const projectsData = [
       { label: "Duration", value: "In progress" },
       { label: "Tools", value: "GCC, GNU assembler (AT&T syntax), perf" }
     ],
-    summary: "Implemented a naive square-root approximation in assembly and a wrapper around the C standard library's sqrt, with a shared driver and a shell script for repeated performance measurements.",
+    summary: "Implemented multiple square-root approximations in assembly and a wrapper around the C standard library's sqrt, with a shared driver and a shell script for repeated performance measurements.",
     links: { github: "https://github.com/Timothy-Loh-bc/asm_projects" },
     caseStudy: {
       overview: [
         "I started this project to get more comfortable writing x86-64 assembly on Linux, rather than only seeing the instructions produced by a compiler. The current focus is square-root computation and how assembly routines interact with the C standard library through the System V x86-64 calling convention.",
-        "So far, I have written a naive iterative approximation, a wrapper that calls the C standard library's sqrt, and a shared assembly driver that runs both versions over the same input list. A shell script builds the two executables with GCC and uses perf to repeat measurements. This is an ongoing learning project, not a completed or optimized replacement for sqrt."
+        "So far, I have written a naive iterative approximation, a binary search approximation, a wrapper that calls the C standard library's sqrt, and a shared assembly driver that runs both versions over the same input list. A shell script builds the two executables with GCC and uses perf to repeat measurements. This is an ongoing learning project, not a completed or optimized replacement for sqrt."
       ],
       architecture: [
         "The same main.s driver can be linked with any implementation of the sqroot function. All of them accept a double in xmm0 and return the result in the same register. Since the C standard library’s sqrt follows this convention too, the C standard library wrapper (sqroot_clib.s) only needs to align the stack before calling it.",
