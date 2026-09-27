@@ -5,7 +5,7 @@
 const profileConfig = {
   name: "Timothy Loh",
   tagline: "Third year Computer Science undergraduate passionate about low-level computer systems and understanding what happens beneath the abstractions most of us take for granted. I enjoy working close to the hardware, exploring computer architecture and systems programming.",
-  status: "Final-Year Undergraduate • Actively Seeking Internships",
+  status: "Third-Year Undergraduate • Actively Seeking Internships",
   avatarUrl: "./assets/profile.jpeg",
   
   // Education & Academics
