@@ -106,7 +106,7 @@ const projectsData = [
           resolution: [
             "As more art assets were added, the size of our textures quickly got out of hand. Opening the editor and launching the game took longer, making the cost of loading those assets hard to ignore. I researched GPU internal texture formats to understand how we could prepare the textures in a form better suited to runtime loading.",
             "I implemented an import pipeline that converts PNG assets into BC3/DXT5 compressed textures. The importer decodes the image into RGBA pixels, compresses it in 4-by-4 blocks, and saves the dimensions and compressed data in a .compressedTex file. Existing converted files are reused, and the engine uploads their compressed blocks directly to OpenGL rather than decoding the source PNG again during normal loading.",
-            "This improved loading times for the editor and game while reducing the texture data needed on the GPU compared with uncompressed RGBA. The trade-off is that BC3 is lossy, so compression involves a balance between image quality and resource cost. The experience taught me that how assets are prepared can matter just as much as the code that loads them."
+            "This improved loading times for the editor and game by about 60 times while reducing the texture data needed on the GPU compared with uncompressed RGBA. The trade-off is that BC3 is lossy, so compression involves a balance between image quality and resource cost. The experience taught me that how assets are prepared can matter just as much as the code that loads them."
           ]
         }
       ],
