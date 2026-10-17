@@ -84,7 +84,7 @@ const projectsData = [
         "Game objects are composed of components that hold data for transforms, sprites, colliders, animation, audio, and gameplay logic. Scene and component serialization use YAML, with prefab support for reusable objects.",
         "Engine systems implement a shared ISystem interface. A registrar owns their lifetimes through unique pointers and invokes updates in registration order, giving subsystems a consistent lifecycle while allowing each to define its own behavior. Resource and service managers provide access to textures, shaders, fonts, audio, and other shared facilities.",
         "The editor's main loop accumulates elapsed frame time to calculate fixed simulation steps. Lua scripts and state machines implement gameplay behavior through C++ bindings, while the editor layers its authoring tools over the engine runtime.",
-        "CMake defines separate engine, editor, and game targets, with Debug, Release, and Shipment configurations. The current dependency setup targets Windows."
+        "CMake defines separate engine, editor, and game targets, with Debug, Release, and Shipment configurations. The current dependency setup targets Windows. Used FetchContent with pinned Git tags to manage third-party dependencies and enable consistent builds across 5 developer environments."
       ],
       keyCapabilities: [
         "Rendering and presentation: OpenGL rendering with cameras, sprites, animation, text, and shader resources, supported by GLFW, GLEW, GLM, and FreeType.",
